@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://rxg6bf1t5mn5"]
+[gd_scene load_steps=17 format=3 uid="uid://rxg6bf1t5mn5"]
 
 [ext_resource type="Script" uid="uid://unsp1paov1vm" path="res://ffs_proto_1.gd" id="1_a202f"]
 [ext_resource type="Script" uid="uid://dffto1jwqhw4f" path="res://death_zone.gd" id="2_noarx"]
+[ext_resource type="Script" uid="uid://b8x6fsyeemfge" path="res://runway.gd" id="3_a0tk4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4xowi"]
 
@@ -31,6 +32,16 @@ size = Vector3(1000, 1, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a202f"]
 size = Vector3(1000, 1, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+albedo_color = Color(0.4326237, 0.43262374, 0.4326237, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r3fl7"]
+material = SubResource("StandardMaterial3D_a0tk4")
+size = Vector3(500, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jka67"]
+size = Vector3(500, 2, 10)
 
 [node name="Node3D" type="Node3D"]
 
@@ -72,3 +83,13 @@ script = ExtResource("2_noarx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone"]
 shape = SubResource("BoxShape3D_a202f")
+
+[node name="Runway" type="StaticBody3D" parent="."]
+script = ExtResource("3_a0tk4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Runway"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5216674, 0)
+mesh = SubResource("BoxMesh_r3fl7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Runway"]
+shape = SubResource("BoxShape3D_jka67")
